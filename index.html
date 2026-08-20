@@ -1,722 +1,284 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Green Network - Protect Earth</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        :root {
-            --primary: #2e7d32;
-            --secondary: #4caf50;
-            --accent: #8bc34a;
-            --light: #e8f5e9;
-            --dark: #1b5e20;
-            --text: #333333;
-            --white: #ffffff;
-        }
-
-        body {
-            background-color: var(--light);
-            color: var(--text);
-            line-height: 1.6;
-        }
-
-        header {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--white);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.8rem;
-            font-weight: 700;
-        }
-
-        .logo i {
-            font-size: 2rem;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-
-        nav ul li {
-            margin-left: 2rem;
-        }
-
-        nav ul li a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 0.5rem 0;
-            position: relative;
-        }
-
-        nav ul li a:hover {
-            color: var(--accent);
-        }
-
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--accent);
-            transition: width 0.3s ease;
-        }
-
-        nav ul li a:hover::after {
-            width: 100%;
-        }
-
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 80vh;
-            display: flex;
-            align-items: center;
-            text-align: center;
-            color: var(--white);
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: var(--accent);
-            color: var(--white);
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn:hover {
-            background-color: var(--primary);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-        }
-
-        section {
-            padding: 5rem 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background-color: var(--accent);
-            border-radius: 2px;
-        }
-
-        .section-title p {
-            color: var(--text);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .about-img {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .about-img img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.5s ease;
-        }
-
-        .about-img:hover img {
-            transform: scale(1.05);
-        }
-
-        .about-text h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: var(--dark);
-        }
-
-        .about-text p {
-            margin-bottom: 1.5rem;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 2rem 1rem;
-            background-color: var(--white);
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .stat-item:hover {
-            transform: translateY(-10px);
-        }
-
-        .stat-item i {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .stat-item h3 {
-            font-size: 2.5rem;
-            color: var(--dark);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-item p {
-            color: var(--text);
-        }
-
-        .initiatives {
-            background-color: var(--white);
-        }
-
-        .initiatives-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .initiative-card {
-            background-color: var(--light);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .initiative-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .initiative-img {
-            height: 200px;
-            overflow: hidden;
-        }
-
-        .initiative-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .initiative-card:hover .initiative-img img {
-            transform: scale(1.1);
-        }
-
-        .initiative-content {
-            padding: 1.5rem;
-        }
-
-        .initiative-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-
-        .initiative-content p {
-            margin-bottom: 1.5rem;
-        }
-
-        .cta {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--white);
-            text-align: center;
-            padding: 5rem 0;
-        }
-
-        .cta h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .cta p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta .btn {
-            background-color: var(--white);
-            color: var(--primary);
-        }
-
-        .cta .btn:hover {
-            background-color: var(--accent);
-            color: var(--white);
-        }
-
-        footer {
-            background-color: var(--dark);
-            color: var(--white);
-            padding: 3rem 0 1rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-column h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 2px;
-            background-color: var(--accent);
-        }
-
-        .footer-column p {
-            margin-bottom: 1rem;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-links li a {
-            color: var(--light);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .footer-links li a:hover {
-            color: var(--accent);
-            padding-left: 5px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: var(--white);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            background-color: var(--accent);
-            transform: translateY(-5px);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .mobile-menu {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        @media (max-width: 992px) {
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .initiatives-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            nav ul {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: var(--primary);
-                flex-direction: column;
-                padding: 1rem 0;
-                text-align: center;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-            }
-            
-            nav ul.active {
-                display: flex;
-            }
-            
-            nav ul li {
-                margin: 0;
-                padding: 0.8rem 0;
-            }
-            
-            .mobile-menu {
-                display: block;
-            }
-            
-            .initiatives-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .stats {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Animation for stats counter */
-        .counter {
-            transition: all 0.5s ease;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A visual guide to coffee origins, processing methods, and roast levels.">
+  <title>Bean Atlas — A Guide to Coffee</title>
+  <style>
+    :root {
+      --paper: #faf7ef;
+      --ink: #25251f;
+      --rust: #a95532;
+      --olive: #687050;
+      --gold: #d8a645;
+      --line: rgba(37, 37, 31, .18);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: Georgia, "Times New Roman", serif;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      height: 82px;
+      padding: 0 clamp(22px, 5vw, 76px);
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      border-bottom: 1px solid var(--line);
+      background: rgba(250, 247, 239, .93);
+      backdrop-filter: blur(12px);
+    }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: bold; letter-spacing: .08em; }
+    .brand-mark { color: var(--rust); font-size: 28px; display: inline-block; transform: rotate(-25deg); }
+    .brand small { padding-left: 10px; border-left: 1px solid var(--line); font: 8px Arial, sans-serif; letter-spacing: .24em; color: #77736a; }
+    nav { display: flex; gap: 38px; font: 12px Arial, sans-serif; letter-spacing: .13em; text-transform: uppercase; }
+    nav a { position: relative; }
+    nav a::after { content: ""; position: absolute; left: 0; right: 100%; bottom: -9px; height: 1px; background: var(--rust); transition: right .25s; }
+    nav a:hover::after { right: 0; }
+    .nav-button { justify-self: end; border: 1px solid var(--ink); border-radius: 100px; padding: 11px 17px; font: 12px Arial, sans-serif; transition: .2s; }
+    .nav-button:hover { color: white; background: var(--ink); }
+
+    .hero {
+      min-height: calc(100vh - 82px);
+      padding: 70px clamp(22px, 5vw, 76px) 55px;
+      display: grid;
+      grid-template-columns: minmax(360px, .9fr) minmax(460px, 1.1fr);
+      align-items: center;
+      overflow: hidden;
+      background: radial-gradient(circle at 72% 38%, #efe2c9 0, transparent 39%), var(--paper);
+    }
+    .kicker { display: flex; align-items: center; gap: 11px; font: 10px Arial, sans-serif; letter-spacing: .25em; text-transform: uppercase; }
+    .kicker::before { content: ""; width: 28px; height: 1px; background: var(--rust); }
+    h1 { margin: 25px 0 30px; font-size: clamp(72px, 8.2vw, 128px); line-height: .9; letter-spacing: -.065em; font-weight: normal; }
+    h1 em { color: var(--rust); font-weight: normal; }
+    .hero-copy > p:not(.kicker) { max-width: 490px; color: #5f5d55; font: 15px/2 Arial, sans-serif; }
+    .hero-button { display: flex; justify-content: space-between; width: 170px; margin-top: 34px; padding: 17px 20px; color: white; background: var(--ink); font: 12px Arial, sans-serif; letter-spacing: .08em; transition: .2s; }
+    .hero-button:hover { background: var(--rust); transform: translateY(-3px); }
+
+    .hero-art { position: relative; min-height: 590px; }
+    .sun {
+      position: absolute;
+      left: 50%; top: 48%;
+      width: 330px; height: 330px;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      background: var(--gold);
+      box-shadow: 0 30px 80px rgba(107, 71, 30, .16);
+    }
+    .sun span { font: 10px Arial, sans-serif; letter-spacing: .28em; }
+    .sun b { margin: 7px 0; font-size: 38px; font-style: italic; font-weight: normal; }
+    .sun small { font: 10px Arial, sans-serif; letter-spacing: .2em; }
+    .orbit { position: absolute; left: 50%; top: 48%; border: 1px solid rgba(79,65,47,.25); border-radius: 50%; transform: translate(-50%, -50%) rotate(-16deg); }
+    .orbit.one { width: 530px; height: 380px; }
+    .orbit.two { width: 620px; height: 500px; transform: translate(-50%, -50%) rotate(25deg); border-style: dashed; }
+    .bean, .card-bean, .roast-bean {
+      position: absolute;
+      border-radius: 52% 48% 50% 50% / 58% 59% 41% 42%;
+      background: linear-gradient(135deg, #a9663e, #57301e);
+      filter: drop-shadow(0 20px 18px rgba(52,31,18,.24));
+    }
+    .bean::after, .card-bean::after, .roast-bean::after { content: ""; position: absolute; left: 52%; top: 8%; height: 84%; border-left: 4px solid rgba(38,20,12,.55); border-radius: 50%; }
+    .bean { width: 115px; height: 155px; }
+    .bean.a { left: 10%; top: 14%; transform: rotate(-32deg) scale(.78); }
+    .bean.b { right: 7%; top: 13%; transform: rotate(33deg) scale(.62); }
+    .bean.c { right: 13%; bottom: 8%; transform: rotate(62deg) scale(.88); }
+    .note { position: absolute; padding: 11px 15px; min-width: 110px; border: 1px solid var(--line); background: rgba(250,247,239,.88); backdrop-filter: blur(8px); }
+    .note span { display: block; margin-bottom: 4px; color: #837c70; font: 8px Arial, sans-serif; letter-spacing: .18em; text-transform: uppercase; }
+    .note b { font-size: 13px; }
+    .note.altitude { left: 5%; bottom: 15%; }
+    .note.flavor { right: 0; top: 43%; }
+    .leaf { position: absolute; width: 78px; height: 32px; border-radius: 100% 0 100% 0; background: var(--olive); }
+    .leaf.a { left: 24%; bottom: 6%; transform: rotate(28deg); }
+    .leaf.b { right: 18%; top: 4%; transform: rotate(-45deg) scale(.7); }
+
+    .intro { max-width: 800px; margin: auto; padding: 110px 24px 75px; text-align: center; }
+    .intro > span { color: var(--rust); font: 9px Arial, sans-serif; letter-spacing: .32em; }
+    .intro h2, .section-title h2 { margin: 18px 0; font-size: clamp(42px, 5vw, 65px); font-weight: normal; }
+    .intro p { max-width: 640px; margin: auto; color: #67645d; font: 14px/2 Arial, sans-serif; }
+    .section { padding: 70px clamp(22px, 7vw, 105px) 110px; }
+    .section-title { margin-bottom: 48px; display: grid; grid-template-columns: 1fr 390px; gap: 80px; align-items: end; }
+    .section-title .kicker { margin: 0; }
+    .section-title h2 { margin-bottom: 0; }
+    .section-title > p { color: #68665e; font: 14px/1.9 Arial, sans-serif; }
+
+    .origin-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .origin-card { min-height: 535px; display: flex; flex-direction: column; border: 1px solid var(--line); overflow: hidden; background: #e4d5b8; transition: .3s; }
+    .origin-card:nth-child(2) { background: #c7ccb3; }
+    .origin-card:nth-child(3) { background: #dfc1ab; }
+    .origin-card:hover { transform: translateY(-8px); box-shadow: 0 24px 60px rgba(42,36,29,.12); }
+    .card-top { display: flex; justify-content: space-between; padding: 20px 22px; font: 9px Arial, sans-serif; letter-spacing: .2em; }
+    .card-top b { font-size: 18px; font-weight: normal; opacity: .45; }
+    .card-art { position: relative; height: 235px; display: grid; place-items: center; }
+    .card-art::after { content: ""; position: absolute; width: 220px; height: 220px; border: 1px solid rgba(45,42,34,.14); border-radius: 50%; }
+    .card-bean { position: relative; z-index: 1; width: 120px; height: 168px; transform: rotate(28deg); }
+    .card-copy { margin-top: auto; padding: 25px; border-top: 1px solid var(--line); background: rgba(250,247,239,.88); }
+    .card-copy > em { color: var(--rust); font-size: 13px; }
+    .card-copy h3 { margin: 5px 0 21px; font-size: 27px; font-weight: normal; }
+    .taste { padding-top: 14px; display: flex; justify-content: space-between; border-top: 1px solid var(--line); font: 11px Arial, sans-serif; }
+    .taste span { color: #777269; }
+    .tags { display: flex; gap: 6px; margin-top: 17px; }
+    .tags span { padding: 6px 10px; border: 1px solid var(--line); border-radius: 50px; font: 9px Arial, sans-serif; letter-spacing: .08em; }
+
+    .process { display: grid; grid-template-columns: .8fr 1.2fr; gap: 100px; color: #f3eddf; background: #30372c; }
+    .process h2 { margin: 20px 0 30px; font-size: clamp(40px, 4.5vw, 64px); line-height: 1.2; font-weight: normal; }
+    .process-copy > p { max-width: 390px; color: #adb1a5; font: 14px/1.9 Arial, sans-serif; }
+    .method-list { border-top: 1px solid rgba(255,255,255,.18); }
+    .method { padding: 33px 0; display: grid; grid-template-columns: 40px 145px 1fr; gap: 18px; align-items: center; border-bottom: 1px solid rgba(255,255,255,.18); }
+    .method > span { color: #d7aa65; font: 10px Arial, sans-serif; }
+    .method h3 { margin: 0 0 6px; font-size: 24px; font-weight: normal; }
+    .method b { color: #c8cbbb; font: 9px Arial, sans-serif; letter-spacing: .14em; text-transform: uppercase; }
+    .method p { margin: 0; color: #aeb1a7; font: 13px/1.8 Arial, sans-serif; }
+
+    .roast-grid { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); padding-top: 55px; }
+    .roast-card { position: relative; padding: 0 40px; text-align: center; border-right: 1px solid var(--line); }
+    .roast-card:last-child { border: 0; }
+    .roast-bean { position: relative; width: 104px; height: 104px; margin: 0 auto 23px; transform: rotate(35deg); box-shadow: inset -8px -12px 18px rgba(0,0,0,.18), 0 12px 28px rgba(48,30,20,.18); }
+    .roast-card:nth-child(1) .roast-bean { background: #a76942; }
+    .roast-card:nth-child(2) .roast-bean { background: #714128; }
+    .roast-card:nth-child(3) .roast-bean { background: #38241b; }
+    .roast-card > span { color: var(--rust); font: 9px Arial, sans-serif; letter-spacing: .25em; }
+    .roast-card h3 { margin: 8px 0 10px; font-size: 24px; font-weight: normal; }
+    .roast-card p { color: #6b685f; font: 13px Arial, sans-serif; }
+    .roast-card b { display: inline-block; margin-top: 12px; padding: 7px 12px; background: #eee6d5; font: 10px Arial, sans-serif; letter-spacing: .1em; }
+
+    footer { min-height: 130px; margin: 0 clamp(22px, 5vw, 76px); display: grid; grid-template-columns: 1fr 1fr 1fr; align-items: center; border-top: 1px solid var(--line); }
+    footer div { display: flex; align-items: center; gap: 10px; font-weight: bold; }
+    footer p { text-align: center; color: #79756c; font: 12px Arial, sans-serif; }
+    footer a { justify-self: end; font: 10px Arial, sans-serif; letter-spacing: .12em; }
+
+    @media (max-width: 980px) {
+      header { grid-template-columns: 1fr auto; }
+      nav { display: none; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-art { min-height: 520px; }
+      .section-title { grid-template-columns: 1fr; gap: 12px; }
+      .origin-grid { grid-template-columns: 1fr 1fr; }
+      .origin-card:last-child { grid-column: 1 / -1; }
+      .process { grid-template-columns: 1fr; gap: 45px; }
+    }
+
+    @media (max-width: 640px) {
+      header { height: 68px; padding: 0 18px; }
+      .brand small { display: none; }
+      .nav-button { padding: 9px 12px; }
+      .hero { min-height: auto; padding: 58px 20px 25px; }
+      h1 { font-size: 66px; }
+      .hero-art { min-height: 420px; margin: -15px -35px; transform: scale(.85); }
+      .sun { width: 250px; height: 250px; }
+      .orbit.one { width: 390px; height: 300px; }
+      .orbit.two { width: 450px; height: 370px; }
+      .bean.a { left: 3%; }.bean.b { right: 0; }.bean.c { right: 7%; }
+      .intro { padding: 75px 20px 40px; }
+      .section { padding: 55px 20px 75px; }
+      .origin-grid { grid-template-columns: 1fr; }
+      .origin-card:last-child { grid-column: auto; }
+      .method { grid-template-columns: 30px 95px 1fr; gap: 10px; }
+      .method p { grid-column: 2 / 4; }
+      .roast-grid { grid-template-columns: 1fr; padding-top: 10px; }
+      .roast-card { padding: 40px 0; border-right: 0; border-bottom: 1px solid var(--line); }
+      footer { padding: 35px 0; grid-template-columns: 1fr; gap: 18px; text-align: center; }
+      footer div, footer a { justify-self: center; }
+      footer p { margin: 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { transition: none !important; }
+    }
+  </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container nav-container">
-            <div class="logo">
-                <i class="fas fa-seedling"></i>
-                <span>Green Network</span>
-            </div>
-            <nav>
-                <div class="mobile-menu">
-                    <i class="fas fa-bars"></i>
-                </div>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#initiatives">Initiatives</a></li>
-                    <li><a href="#get-involved">Get Involved</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+  <header>
+    <a class="brand" href="#top"><span class="brand-mark">◒</span><span>BEAN ATLAS</span><small>COFFEE GUIDE</small></a>
+    <nav aria-label="Main navigation"><a href="#origins">Origins</a><a href="#process">Processing</a><a href="#roast">Roasting</a></nav>
+    <a class="nav-button" href="#guide">Explore flavor ↗</a>
+  </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container hero-content">
-            <h1>Protect Our Planet, Preserve Our Future</h1>
-            <p>Join the global movement to create a sustainable world through conservation, education, and community action.</p>
-            <a href="#get-involved" class="btn">Join Our Network</a>
-        </div>
+  <main>
+    <section class="hero" id="top">
+      <div class="hero-copy">
+        <p class="kicker">A flavor journey from seed to cup</p>
+        <h1>Know Your<br><em>Coffee.</em></h1>
+        <p>Every cup carries the story of its soil, sunlight, and time. Learn how origin, variety, processing, and roasting shape the coffee you love.</p>
+        <a class="hero-button" href="#origins">Start exploring <span>↓</span></a>
+      </div>
+      <div class="hero-art" aria-label="Stylized coffee bean illustration">
+        <div class="orbit one"></div><div class="orbit two"></div>
+        <div class="sun"><span>COFFEA</span><b>Arabica</b><small>HIGH-GROWN COFFEE</small></div>
+        <div class="bean a"></div><div class="bean b"></div><div class="bean c"></div>
+        <div class="note altitude"><span>Altitude</span><b>1,800 m</b></div>
+        <div class="note flavor"><span>Flavor</span><b>Floral · Citrus</b></div>
+        <div class="leaf a"></div><div class="leaf b"></div>
+      </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <div class="section-title">
-                <h2>About Green Network</h2>
-                <p>We are a global community dedicated to environmental protection and sustainable development.</p>
-            </div>
-            <div class="about-content">
-                <div class="about-img">
-                    <img src="https://images.unsplash.com/photo-1507591064344-4c6ce005b128?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Team planting trees">
-                </div>
-                <div class="about-text">
-                    <h3>Our Mission</h3>
-                    <p>Green Network is committed to creating a sustainable future by protecting natural ecosystems, promoting renewable energy, and empowering communities to take environmental action.</p>
-                    <p>Founded in 2010, we've grown from a small grassroots organization to an international network with over 50,000 members across 120 countries.</p>
-                    <p>Our approach combines scientific research, community engagement, and policy advocacy to address the most pressing environmental challenges of our time.</p>
-                    <a href="#" class="btn">Learn More</a>
-                </div>
-            </div>
-            <div class="stats">
-                <div class="stat-item">
-                    <i class="fas fa-tree"></i>
-                    <h3 class="counter" data-target="2500000">0</h3>
-                    <p>Trees Planted</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-users"></i>
-                    <h3 class="counter" data-target="50000">0</h3>
-                    <p>Active Members</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-globe-americas"></i>
-                    <h3 class="counter" data-target="120">0</h3>
-                    <p>Countries Reached</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-recycle"></i>
-                    <h3 class="counter" data-target="1500">0</h3>
-                    <p>Cleanup Projects</p>
-                </div>
-            </div>
-        </div>
+    <section class="intro" id="guide">
+      <span>KNOW YOUR COFFEE</span>
+      <h2>Where does flavor begin?</h2>
+      <p>Latitude, altitude, soil, variety, and processing all shape a coffee's character. There is no single “best” bean—only the one that speaks most clearly to your palate.</p>
     </section>
 
-    <!-- Initiatives Section -->
-    <section class="initiatives" id="initiatives">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Initiatives</h2>
-                <p>Discover the key programs and projects we're implementing to protect our planet.</p>
-            </div>
-            <div class="initiatives-grid">
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://dialogue.earth/content/uploads/2021/04/lessons-from-the-rush-to-reforest-china-dialogue-2400x1599.jpg" alt="Reforestation">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Global Reforestation</h3>
-                        <p>Planting millions of trees worldwide to restore ecosystems, combat climate change, and protect biodiversity.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1621451537084-482c73073a0f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Ocean Conservation">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Ocean Conservation</h3>
-                        <p>Protecting marine ecosystems, reducing plastic pollution, and promoting sustainable fishing practices.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt="Renewable Energy">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Renewable Energy</h3>
-                        <p>Promoting solar, wind, and other clean energy sources to reduce dependence on fossil fuels.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <section class="section" id="origins">
+      <div class="section-title">
+        <div><p class="kicker">Featured origins</p><h2>Three lands. Three personalities.</h2></div>
+        <p>From the bright florals of East Africa to the caramel sweetness of the Americas, classic origins are the easiest place to build your flavor map.</p>
+      </div>
+      <div class="origin-grid">
+        <article class="origin-card">
+          <div class="card-top"><span>ETHIOPIA</span><b>01</b></div>
+          <div class="card-art"><div class="card-bean"></div></div>
+          <div class="card-copy"><em>Yirgacheffe</em><h3>Ethiopian Heirloom</h3><div class="taste"><span>TASTING NOTES</span><b>Jasmine · Citrus · Honey</b></div><div class="tags"><span>Washed</span><span>Light roast</span></div></div>
+        </article>
+        <article class="origin-card">
+          <div class="card-top"><span>COLOMBIA</span><b>02</b></div>
+          <div class="card-art"><div class="card-bean"></div></div>
+          <div class="card-copy"><em>Huila</em><h3>Colombian Caturra</h3><div class="taste"><span>TASTING NOTES</span><b>Red apple · Caramel · Nut</b></div><div class="tags"><span>Washed</span><span>Medium roast</span></div></div>
+        </article>
+        <article class="origin-card">
+          <div class="card-top"><span>PANAMA</span><b>03</b></div>
+          <div class="card-art"><div class="card-bean"></div></div>
+          <div class="card-copy"><em>Boquete</em><h3>Panama Geisha</h3><div class="taste"><span>TASTING NOTES</span><b>Bergamot · White flower · Peach</b></div><div class="tags"><span>Natural</span><span>Light roast</span></div></div>
+        </article>
+      </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta" id="get-involved">
-        <div class="container">
-            <h2>Join Our Global Movement</h2>
-            <p>Together, we can create a sustainable future for generations to come. Every action counts, no matter how small.</p>
-            <a href="#" class="btn">Become a Member</a>
-        </div>
+    <section class="section process" id="process">
+      <div class="process-copy"><p class="kicker">From cherry to green bean</p><h2>Processing shapes the sweetness.</h2><p>The same coffee variety can taste remarkably different depending on how the fruit is removed and the seed is dried.</p></div>
+      <div class="method-list">
+        <article class="method"><span>01</span><div><h3>Washed</h3><b>Clean & bright</b></div><p>The fruit is removed before drying, revealing crisp acidity and a clear expression of origin.</p></article>
+        <article class="method"><span>02</span><div><h3>Natural</h3><b>Sweet & full</b></div><p>The whole cherry dries around the seed, often creating ripe fruit, wine, and deeper sweetness.</p></article>
+        <article class="method"><span>03</span><div><h3>Honey</h3><b>Round & balanced</b></div><p>Some sticky fruit mucilage remains during drying, bridging washed clarity and natural sweetness.</p></article>
+      </div>
     </section>
 
-    <!-- Footer -->
-    <footer id="contact">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Green Network</h3>
-                    <p>We are dedicated to protecting our planet through collaborative action, education, and sustainable solutions.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#initiatives">Initiatives</a></li>
-                        <li><a href="#get-involved">Get Involved</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Our Programs</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Reforestation</a></li>
-                        <li><a href="#">Ocean Cleanup</a></li>
-                        <li><a href="#">Wildlife Protection</a></li>
-                        <li><a href="#">Climate Education</a></li>
-                        <li><a href="#">Sustainable Agriculture</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Contact Us</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Copper Creek Drive, New York</p>
-                    <p><i class="fas fa-phone"></i> +1 (312) 171-0771</p>
-                    <p><i class="fas fa-envelope"></i> support@greennetwork.org</p>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2025 Green Network. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+    <section class="section" id="roast">
+      <div class="section-title">
+        <div><p class="kicker">Roast guide</p><h2>Find your roast level.</h2></div>
+        <p>As roasting develops, acidity tends to soften while caramelization, body, and bittersweet flavors become more pronounced.</p>
+      </div>
+      <div class="roast-grid">
+        <article class="roast-card"><div class="roast-bean"></div><span>LIGHT</span><h3>Light Roast</h3><p>Floral, fruity, and bright</p><b>Pour-over · Cold drip</b></article>
+        <article class="roast-card"><div class="roast-bean"></div><span>MEDIUM</span><h3>Medium Roast</h3><p>Sweet, round, and balanced</p><b>Pour-over · Americano</b></article>
+        <article class="roast-card"><div class="roast-bean"></div><span>DARK</span><h3>Dark Roast</h3><p>Bold, rich, and bittersweet</p><b>Espresso · Milk drinks</b></article>
+      </div>
+    </section>
+  </main>
 
-    <script>
-        // Mobile Menu Toggle
-        document.querySelector('.mobile-menu').addEventListener('click', function() {
-            document.querySelector('nav ul').classList.toggle('active');
-        });
-
-        // Counter Animation
-        function animateCounters() {
-            const counters = document.querySelectorAll('.counter');
-            const speed = 200; // The lower the slower
-            
-            counters.forEach(counter => {
-                const target = +counter.getAttribute('data-target');
-                const count = +counter.innerText;
-                
-                const inc = target / speed;
-                
-                if(count < target) {
-                    counter.innerText = Math.ceil(count + inc);
-                    setTimeout(animateCounters, 1);
-                } else {
-                    counter.innerText = target;
-                }
-            });
-        }
-
-        // Initialize counters when page loads
-        window.addEventListener('load', animateCounters);
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-                    document.querySelector('nav ul').classList.remove('active');
-                }
-            });
-        });
-    </script>
+  <footer>
+    <div><span class="brand-mark">◒</span><span>BEAN ATLAS</span></div>
+    <p>Taste the origin. Enjoy the ritual.</p>
+    <a href="#top">BACK TO TOP ↑</a>
+  </footer>
 </body>
-
 </html>
